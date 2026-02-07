@@ -1,0 +1,505 @@
+<!--Yash Koli G01543818-->
+<!--This is the survey form.-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Survey Form</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #e74c3c;
+            --accent-color: #3498db;
+            --text-color: #333;
+            --light-bg: #ecf0f1;
+            --white: #ffffff;
+            --border-color: #ddd;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1.5rem 2rem;
+            border-radius: 15px 15px 0 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .survey-container {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            animation: fadeInUp 0.8s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .survey-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 3px solid var(--light-bg);
+        }
+
+        .survey-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .survey-header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .form-section {
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .required::after {
+            content: " *";
+            color: var(--secondary-color);
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: 'Source Sans Pro', sans-serif;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        input[type="date"]:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .checkbox-group,
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .checkbox-item,
+        .radio-item {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .checkbox-item:hover,
+        .radio-item:hover {
+            background-color: var(--light-bg);
+        }
+
+        input[type="checkbox"],
+        input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 0.75rem;
+            cursor: pointer;
+            accent-color: var(--accent-color);
+        }
+
+        .checkbox-item label,
+        .radio-item label {
+            margin-bottom: 0;
+            font-weight: 400;
+            cursor: pointer;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid var(--light-bg);
+        }
+
+        button {
+            padding: 1rem 3rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+
+        .btn-submit {
+            background: var(--secondary-color);
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+        }
+
+        .btn-submit:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+        }
+
+        .btn-cancel {
+            background: #95a5a6;
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(149, 165, 166, 0.3);
+        }
+
+        .btn-cancel:hover {
+            background: #7f8c8d;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(149, 165, 166, 0.4);
+        }
+
+        .help-text {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.25rem;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .survey-container {
+                padding: 2rem 1.5rem;
+            }
+
+            .survey-header h1 {
+                font-size: 2rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav>
+                <a href="index.html" class="logo">Home</a>
+                <ul class="nav-links">
+                    <li><a href="survey.html">Survey</a></li>
+                    <li><a href="index.html">About</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="survey-container">
+            <div class="survey-header">
+                <h1>Student Survey Form</h1>
+                <p>Help us improve by sharing your feedback and experiences</p>
+            </div>
+
+            <form id="studentSurvey" method="post" action="#">
+                <!-- Personal Information Section -->
+                <div class="form-section">
+                    <h2 class="section-title">Personal Information</h2>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName" class="required">First Name</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName" class="required">Last Name</label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="streetAddress" class="required">Street Address</label>
+                        <input type="text" id="streetAddress" name="streetAddress" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="city" class="required">City</label>
+                            <input type="text" id="city" name="city" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="state" class="required">State</label>
+                            <input type="text" id="state" name="state" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="zip" class="required">Zip Code</label>
+                            <input type="text" id="zip" name="zip" pattern="[0-9]{5}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telephone" class="required">Telephone Number</label>
+                            <input type="tel" id="telephone" name="telephone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email" class="required">E-mail</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="surveyDate" class="required">Date of Survey</label>
+                            <input type="date" id="surveyDate" name="surveyDate" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Campus Experience Section -->
+                <div class="form-section">
+                    <h2 class="section-title">Campus Experience</h2>
+                    
+                    <div class="form-group">
+                        <label>What did you like most about the campus? (Check all that apply)</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="students" name="likedMost" value="students">
+                                <label for="students">Students</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="location" name="likedMost" value="location">
+                                <label for="location">Location</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="campus" name="likedMost" value="campus">
+                                <label for="campus">Campus</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="atmosphere" name="likedMost" value="atmosphere">
+                                <label for="atmosphere">Atmosphere</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="dormRooms" name="likedMost" value="dormRooms">
+                                <label for="dormRooms">Dorm Rooms</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="sports" name="likedMost" value="sports">
+                                <label for="sports">Sports</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>How did you become interested in the university?</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="friends" name="interest" value="friends">
+                                <label for="friends">Friends</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="television" name="interest" value="television">
+                                <label for="television">Television</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="internet" name="interest" value="internet">
+                                <label for="internet">Internet</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="other" name="interest" value="other">
+                                <label for="other">Other</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="recommendation">Likelihood of recommending this school to other prospective students</label>
+                        <select id="recommendation" name="recommendation">
+                            <option value="">-- Select an option --</option>
+                            <option value="veryLikely">Very Likely</option>
+                            <option value="likely">Likely</option>
+                            <option value="unlikely">Unlikely</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Raffle Section -->
+                <div class="form-section">
+                    <h2 class="section-title">Raffle Entry</h2>
+                    
+                    <div class="form-group">
+                        <label for="raffle">Raffle Numbers</label>
+                        <input type="text" id="raffle" name="raffle" placeholder="e.g., 5, 12, 23, 34, 45, 56, 67, 78, 89, 91">
+                        <div class="help-text">Enter at least 10 comma-separated numbers between 1 and 100</div>
+                    </div>
+                </div>
+
+                <!-- Additional Comments Section -->
+                <div class="form-section">
+                    <h2 class="section-title">Additional Feedback</h2>
+                    
+                    <div class="form-group">
+                        <label for="comments">Additional Comments</label>
+                        <textarea id="comments" name="comments" placeholder="Please share any additional thoughts or feedback..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Submit Buttons -->
+                <div class="button-group">
+                    <button type="submit" class="btn-submit">Submit Survey</button>
+                    <button type="reset" class="btn-cancel">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Form validation script
+        document.getElementById('studentSurvey').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Validate raffle numbers
+            const raffleInput = document.getElementById('raffle').value.trim();
+            if (raffleInput) {
+                const numbers = raffleInput.split(',').map(num => num.trim());
+                
+                if (numbers.length < 10) {
+                    alert('Please enter at least 10 numbers for the raffle.');
+                    return false;
+                }
+                
+                for (let num of numbers) {
+                    const parsedNum = parseInt(num);
+                    if (isNaN(parsedNum) || parsedNum < 1 || parsedNum > 100) {
+                        alert('All raffle numbers must be between 1 and 100.');
+                        return false;
+                    }
+                }
+            }
+            
+            alert('Survey submitted successfully! Thank you for your feedback.');
+            // Here you would normally send the form data to a server
+            // For now, we'll just reset the form
+            this.reset();
+        });
+
+        // Set today's date as default for the survey date
+        document.getElementById('surveyDate').valueAsDate = new Date();
+    </script>
+</body>
+</html>
