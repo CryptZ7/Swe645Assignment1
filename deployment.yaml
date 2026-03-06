@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: swe645-deployment
+  labels:
+    app: swe645-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: swe645-app
+  template:
+    metadata:
+      labels:
+        app: swe645-app
+    spec:
+      containers:
+        - name: swe645-container
+          image: cryptz77/swe6452:latest
+          ports:
+            - containerPort: 80
